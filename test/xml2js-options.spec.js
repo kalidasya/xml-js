@@ -1,5 +1,5 @@
-var convert = require('../lib');
-var testItems = require('./test-items');
+import { xml2js, xml2json, json2xml, js2xml } from '../lib';
+import testItems from './test-items';
 
 /*global describe,it,expect*/
 
@@ -12,7 +12,7 @@ describe('Testing xml2js.js:', function () {
     var options = {};
     testItems('xml2js', options).forEach(function (test) {
       it(test.desc, function () {
-        expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+        expect(xml2js(test.xml, options)).toEqual(test.js);
       });
     });
 
@@ -25,7 +25,7 @@ describe('Testing xml2js.js:', function () {
       var options = {singleLine: false, compact: false, trim: false, sanitize: false, nativeType: false, alwaysChildren: false, addParent: false};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -36,7 +36,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -47,7 +47,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, trim: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -58,7 +58,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, sanitize: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -69,7 +69,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, nativeType: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -80,7 +80,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, nativeTypeAttributes: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -91,7 +91,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, alwaysChildren: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -102,7 +102,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, addParent: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -113,7 +113,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreText: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -124,7 +124,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreComment: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -135,7 +135,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreCdata: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -146,7 +146,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreDoctype: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -157,7 +157,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreDeclaration: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -168,7 +168,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, ignoreInstruction: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -183,7 +183,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, trim: false, sanitize: false, nativeType: false, alwaysChildren: false, addParent: false};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -194,7 +194,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -205,7 +205,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, trim: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -216,7 +216,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, sanitize: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -227,7 +227,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, alwaysArray: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -238,7 +238,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, alwaysArray: ['a', 'c']};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -249,7 +249,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, addParent: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -260,7 +260,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreText: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -271,7 +271,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreComment: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -282,7 +282,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreCdata: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -293,7 +293,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreDoctype: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -304,7 +304,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreDeclaration: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -315,7 +315,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, ignoreInstruction: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -330,7 +330,7 @@ describe('Testing xml2js.js:', function () {
       var options = {};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -341,7 +341,7 @@ describe('Testing xml2js.js:', function () {
       var options = {spaces: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -352,7 +352,7 @@ describe('Testing xml2js.js:', function () {
       var options = {spaces: 2};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -363,7 +363,7 @@ describe('Testing xml2js.js:', function () {
       var options = {spaces: 4};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -374,7 +374,7 @@ describe('Testing xml2js.js:', function () {
       var options = {spaces: '  '};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -385,7 +385,7 @@ describe('Testing xml2js.js:', function () {
       var options = {spaces: '\t'};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -400,7 +400,7 @@ describe('Testing xml2js.js:', function () {
       var options = {trim: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -411,15 +411,15 @@ describe('Testing xml2js.js:', function () {
       var options = {nativeType: true};
 
       it('Parse number', function () {
-        expect(convert.xml2js('<a>123</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":123}]}]});
+        expect(xml2js('<a>123</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":123}]}]});
       });
       it('Parse true', function () {
-        expect(convert.xml2js('<a>true</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":true}]}]});
+        expect(xml2js('<a>true</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":true}]}]});
       });
       it('Parse false', function () {
-        expect(convert.xml2js('<a>false</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":false}]}]});
+        expect(xml2js('<a>false</a>', options)).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":false}]}]});
       });
-      convert.xml2js('<a>x', {});
+      xml2js('<a>x', {});
       /*it('Parse improper XML', function () {
         expect(convert.xml2js('<a>x', {})).toEqual({"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":"x"}]}]});
       });*/
@@ -431,13 +431,13 @@ describe('Testing xml2js.js:', function () {
       var options = {nativeTypeAttributes: true};
 
       it('Parse number', function () {
-        expect(convert.xml2js('<a data-value="123"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":123}}]});
+        expect(xml2js('<a data-value="123"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":123}}]});
       });
       it('Parse true', function () {
-        expect(convert.xml2js('<a data-value="true"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":true}}]});
+        expect(xml2js('<a data-value="true"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":true}}]});
       });
       it('Parse false', function () {
-        expect(convert.xml2js('<a data-value="false"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":false}}]});
+        expect(xml2js('<a data-value="false"></a>', options)).toEqual({"elements":[{"type":"element","name":"a","attributes":{"data-value":false}}]});
       });
 
     });
@@ -447,11 +447,11 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, instructionHasAttributes: true};
 
       it('Parse attributes in processing instruction', function () {
-        expect(convert.xml2js('<?go to="there"?>', options)).toEqual({"_instruction":{"go":{"_attributes":{"to":"there"}}}});
+        expect(xml2js('<?go to="there"?>', options)).toEqual({"_instruction":{"go":{"_attributes":{"to":"there"}}}});
       });
 
       it('Parse attributes in processing instruction', function () {
-        expect(convert.xml2js('<?go to="there"?>', {instructionHasAttributes: true})).toEqual({"elements":[{"type":"instruction","name":"go","attributes":{"to":"there"}}]});
+        expect(xml2js('<?go to="there"?>', {instructionHasAttributes: true})).toEqual({"elements":[{"type":"instruction","name":"go","attributes":{"to":"there"}}]});
       });
 
     });
@@ -465,7 +465,7 @@ describe('Testing xml2js.js:', function () {
       var options = {};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2json(test.xml, options)).toEqual(JSON.stringify(test.js));
+          expect(xml2json(test.xml, options)).toEqual(JSON.stringify(test.js));
         });
       });
 
@@ -476,7 +476,7 @@ describe('Testing xml2js.js:', function () {
       var options = {onlyItem: 6, compact: true, addParent: true};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2json(test.xml, options)).toBe(JSON.stringify(test.js, function (k, v) { return k === '_parent'? '_' : v; }));
+          expect(xml2json(test.xml, options)).toBe(JSON.stringify(test.js, function (k, v) { return k === '_parent'? '_' : v; }));
         });
       });
 
@@ -540,7 +540,7 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should output as expected json', function () {
-        expect(convert.xml2json(xml, {compact: true})).toEqual(JSON.stringify(json));
+        expect(xml2json(xml, {compact: true})).toEqual(JSON.stringify(json));
       });
 
     });
@@ -574,10 +574,10 @@ describe('Testing xml2js.js:', function () {
         '    </applicationslist>\n' +
         '</ZohoCreator>';
 
-      var json = convert.xml2json(xml, {compact: true, spaces: 4});
+      var json = xml2json(xml, {compact: true, spaces: 4});
 
       it('should output json and reverse it back to xml', function () {
-        expect(convert.json2xml(json, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml);
+        expect(json2xml(json, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml);
       });
 
     });
@@ -588,7 +588,7 @@ describe('Testing xml2js.js:', function () {
       var json = {"_doctype" : "svc_init SYSTEM \"MLP_SVC_INIT_300.DTD\" [<!ENTITY % extension SYSTEM \"PIF_EXTENSION_100.DTD\">%extension;]"};
 
       it('should output as expected json', function () {
-        expect(convert.xml2js(xml, {compact: true})).toEqual(json);
+        expect(xml2js(xml, {compact: true})).toEqual(json);
       });
 
     });
@@ -628,9 +628,9 @@ describe('Testing xml2js.js:', function () {
 
       it('should convert xml object to js and back to xml correctly', function () {
         xml = xml.replace(/\v/g, '  ');
-        var js_ = convert.xml2js(xml, {compact: true});
+        var js_ = xml2js(xml, {compact: true});
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_, {spaces: 2, compact: true})).toEqual(xml);
+        expect(js2xml(js_, {spaces: 2, compact: true})).toEqual(xml);
       });
 
     });
@@ -650,9 +650,9 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
-        var js_ = convert.xml2js(xml);
+        var js_ = xml2js(xml);
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_)).toEqual(xml);
+        expect(js2xml(js_)).toEqual(xml);
       });
 
     });
@@ -692,9 +692,9 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
-        var js_ = convert.xml2js(xml, {captureSpacesBetweenElements: true});
+        var js_ = xml2js(xml, {captureSpacesBetweenElements: true});
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_)).toEqual(xml);
+        expect(js2xml(js_)).toEqual(xml);
       });
 
     });
@@ -712,7 +712,7 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should accept XML declarations that use single quotes', function () {
-        expect(convert.xml2js(xml)).toEqual(js);
+        expect(xml2js(xml)).toEqual(js);
       });
 
     });

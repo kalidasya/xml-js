@@ -1,5 +1,5 @@
-var convert = require('../lib');
-var testItems = require('./test-items');
+import { xml2js } from '../lib';
+import testItems from './test-items';
 
 /*global describe,it,expect*/
 
@@ -33,7 +33,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, doctypeFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[0].doctype) {
           it('should provide correct arguments', function () {
@@ -49,7 +49,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, instructionFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
           // console.log(JSON.stringify(convert.xml2js(test.xml, options)));
         });
         if (test.js.elements && test.js.elements[0].instruction) {
@@ -67,7 +67,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, cdataFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[0].cdata) {
           it('should provide correct arguments', function () {
@@ -83,7 +83,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, commentFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[0].comment) {
           it('should provide correct arguments', function () {
@@ -99,7 +99,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, textFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[0].text) {
           it('should provide correct arguments', function () {
@@ -115,7 +115,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, instructionNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[0].instruction) {
           it('should provide correct arguments', function () {
@@ -131,7 +131,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, elementNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[test.js.elements.length-1].type === 'element' && !test.js.elements[test.js.elements.length-1].elements) {
           it('should provide correct arguments', function () {
@@ -147,7 +147,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, attributeNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -158,7 +158,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, attributeValueFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -169,11 +169,11 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, attributesFn: manipulateAttribute};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.elements && test.js.elements[test.js.elements.length-1].attributes) {
           it('should provide correct arguments', function () {
-            expect(args).toContain(test.js.elements[test.js.elements.length-1].attributes, test.js);
+            expect(args).toContain(test.js.elements[test.js.elements.length-1].attributes);
           });
         }
       });
@@ -185,7 +185,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, doctypeFn: manipulate, instructionFn: manipulate, cdataFn: manipulate, commentFn: manipulate, textFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -196,7 +196,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: false, instructionNameFn: manipulate, elementNameFn: manipulate, attributeNameFn: manipulate, attributeValueFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -211,7 +211,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, doctypeFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js._doctype) {
           it('should provide correct arguments', function () {
@@ -227,7 +227,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, instructionFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -238,7 +238,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, cdataFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js._cdata) {
           it('should provide correct arguments', function () {
@@ -254,7 +254,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, commentFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js._comment) {
           it('should provide correct arguments', function () {
@@ -270,7 +270,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, textFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.a && test.js.a._text) {
           it('should provide correct arguments', function () {
@@ -286,7 +286,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, instructionNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -297,7 +297,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, elementNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -308,7 +308,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, attributeNameFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -319,7 +319,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, attributeValueFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -330,7 +330,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, attributesFn: manipulateAttribute};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.a && test.js.a._attributes) {
           it('should provide correct arguments', function () {
@@ -346,7 +346,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, doctypeFn: manipulate, instructionFn: manipulate, cdataFn: manipulate, commentFn: manipulate, textFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 
@@ -357,7 +357,7 @@ describe('Testing xml2js.js:', function () {
       var options = {compact: true, instructionNameFn: manipulate, elementNameFn: manipulate, attributeNameFn: manipulate, attributeValueFn: manipulate};
       testItems('xml2js', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.xml2js(test.xml, options)).toEqual(test.js);
+          expect(xml2js(test.xml, options)).toEqual(test.js);
         });
       });
 

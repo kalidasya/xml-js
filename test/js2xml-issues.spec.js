@@ -1,5 +1,5 @@
-var convert = require('../lib');
-var Script = require('vm').Script;
+import { js2xml } from '../lib';
+import { Script } from 'vm';
 
 /*global describe,it,expect*/
 
@@ -32,11 +32,11 @@ describe('Testing js2xml.js:', function () {
         '</snippet>';
 
       it('should output cdata and text unformatted', function () {
-        expect(convert.js2xml(js, {compact: true})).toEqual(xml.replace(/\v|\n/g, ''));
+        expect(js2xml(js, {compact: true})).toEqual(xml.replace(/\v|\n/g, ''));
       });
 
       it('should output cdata and text formatted', function () {
-        expect(convert.js2xml(js, {compact: true, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js, {compact: true, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
       });
 
     });
@@ -69,11 +69,11 @@ describe('Testing js2xml.js:', function () {
         '</a>';
 
       it('should output xml of compact js input', function () {
-        expect(convert.js2xml(js1, {compact: true, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js1, {compact: true, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
       });
 
       it('should output xml of extended js input', function () {
-        expect(convert.js2xml(js2, {compact: false, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js2, {compact: false, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
       });
 
     });
@@ -105,7 +105,7 @@ describe('Testing js2xml.js:', function () {
         '</ServiceExceptionReport>';
 
       it('should output as expected xml', function () {
-        expect(convert.js2xml(json, {compact: true, spaces: 2})).toEqual(xml);
+        expect(js2xml(json, {compact: true, spaces: 2})).toEqual(xml);
       });
 
     });
@@ -130,7 +130,7 @@ describe('Testing js2xml.js:', function () {
         '</group>';
 
       it('should output cdata without proceeding indentation', function () {
-        expect(convert.js2xml(js, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml.replace(/\v/g, '    '));
       });
 
     });
@@ -174,7 +174,7 @@ describe('Testing js2xml.js:', function () {
         '</group>';
 
       it('should output cdata without proceeding indentation', function () {
-        expect(convert.js2xml(js, {compact: false, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js, {compact: false, spaces: 4})).toEqual(xml.replace(/\v/g, '    '));
       });
 
     });
@@ -222,7 +222,7 @@ describe('Testing js2xml.js:', function () {
         '</request>';
 
       it('should convert javascript object to xml correctly', function () {
-        expect(convert.js2xml(js, {spaces: 4, compact: true})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js, {spaces: 4, compact: true})).toEqual(xml.replace(/\v/g, '    '));
         // expect(convert.xml2js(xml, {compact: true, nativeType: true})).toEqual(js);
       });
 
@@ -289,7 +289,7 @@ describe('Testing js2xml.js:', function () {
         '</vertical>';
 
       it('should convert javascript object to xml correctly', function () {
-        expect(convert.js2xml(js, {spaces: 4, compact: true})).toEqual(xml.replace(/\v/g, '    '));
+        expect(js2xml(js, {spaces: 4, compact: true})).toEqual(xml.replace(/\v/g, '    '));
       });
 
     });
@@ -306,7 +306,7 @@ describe('Testing js2xml.js:', function () {
       var xml = '<a num="123"/>';
 
       it('should process attribute number without issue', function () {
-        expect(convert.js2xml(js, {compact: true})).toEqual(xml);
+        expect(js2xml(js, {compact: true})).toEqual(xml);
       });
 
     });
@@ -318,7 +318,7 @@ describe('Testing js2xml.js:', function () {
       };
       var xml = '<a>Hi There</a>';
       it('should convert js object to xml', function () {
-        expect(convert.js2xml(js, {spaces: 3, fullTagEmptyElement: true, compact: true})).toEqual(xml);
+        expect(js2xml(js, {spaces: 3, fullTagEmptyElement: true, compact: true})).toEqual(xml);
       });
 
     });
@@ -350,10 +350,10 @@ describe('Testing js2xml.js:', function () {
       '\v/>\n' +
       '</parent>';
       it('should be able to indent attributes', function () {
-        expect(convert.js2xml(js, {indentAttributes: true, spaces: 2, compact: true})).toEqual(xml.replace(/\v/g, '  ').replace('=1', '="1"'));
+        expect(js2xml(js, {indentAttributes: true, spaces: 2, compact: true})).toEqual(xml.replace(/\v/g, '  ').replace('=1', '="1"'));
       });
       it('should be able to indent attributes and no quotes for native attributes', function () {
-        expect(convert.js2xml(js, {indentAttributes: true, spaces: 2, compact: true, noQuotesForNativeAttributes: true})).toEqual(xml.replace(/\v/g, '  '));
+        expect(js2xml(js, {indentAttributes: true, spaces: 2, compact: true, noQuotesForNativeAttributes: true})).toEqual(xml.replace(/\v/g, '  '));
       });
 
     });
@@ -370,7 +370,7 @@ describe('Testing js2xml.js:', function () {
       };
       var xml = '<example>value</example>';
       it('should convert element text without _text property', function () {
-        expect(convert.js2xml(js, {compact: true})).toEqual(xml);
+        expect(js2xml(js, {compact: true})).toEqual(xml);
       });
 
     });
@@ -429,7 +429,7 @@ describe('Testing js2xml.js:', function () {
       '  <vcpi/>\n' +
       '</textless>';
       it ('should not create full tag for empty elements', function() {
-        expect(convert.js2xml(js, {compact: true, spaces: 2, fullTagEmptyElement: false})).toEqual(xml);
+        expect(js2xml(js, {compact: true, spaces: 2, fullTagEmptyElement: false})).toEqual(xml);
       });
     });
 
@@ -447,7 +447,7 @@ describe('Testing js2xml.js:', function () {
       '  <cdata_section><![CDATA[<p><![CDATA[aaaa, one <bbbb>cccc</bbbb>]]]]><![CDATA[></p>]]></cdata_section>\n' +
       '</container>';
       it ('should handle nested CDATA sections', function() {
-        expect(convert.js2xml(js, {compact: true, spaces: 2, fullTagEmptyElement: false})).toEqual(xml);
+        expect(js2xml(js, {compact: true, spaces: 2, fullTagEmptyElement: false})).toEqual(xml);
       });
     });
 

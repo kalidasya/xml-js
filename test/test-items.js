@@ -1,4 +1,3 @@
-var isArray = require('../lib/array-helper').isArray;
 
 var cases = [
   {
@@ -106,7 +105,7 @@ var cases = [
   // todo alwaysArray array case
 ];
 
-module.exports = function (direction, options) {
+export default function (direction, options) {
   var i, tests = [];
   options = options || {};
   function applyOptions (obj, pathKey) {
@@ -124,7 +123,7 @@ module.exports = function (direction, options) {
         fullKey = (pathKey ? pathKey + '.' : '') + key;
         if (
           options.compact &&
-          (isArray(options.alwaysArray) ? options.alwaysArray.indexOf(key) !== -1 : options.alwaysArray) &&
+          (Array.isArray(options.alwaysArray) ? options.alwaysArray.indexOf(key) !== -1 : options.alwaysArray) &&
           !(obj[key] instanceof Array) &&
           key !== '_declaration' &&
           (key === '_instruction' || fullKey.indexOf('_instruction') < 0) &&

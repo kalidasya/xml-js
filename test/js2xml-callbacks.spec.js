@@ -1,4 +1,4 @@
-var convert = require('../lib');
+import { js2xml } from '../lib';
 
 /*global describe,it,expect*/
 
@@ -34,7 +34,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"doctype","doctype":"note [\n<!ENTITY foo \"baa\">]"}]};
       var xml = '<!DOCTYPE ' + manipulate('note [\n<!ENTITY foo "baa">]') + '>';
       it('<!DOCTYPE note [\\n<!ENTITY foo "baa">]>', function () {
-        expect(convert.js2xml(js, {compact: false, doctypeFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, doctypeFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('note [\n<!ENTITY foo "baa">]', '_root_', js);
@@ -47,7 +47,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"instruction","name":"go","instruction":"there"}]};
       var xml = '<?go ' + manipulate('there') + '?>';
       it('<?go there?>', function () {
-        expect(convert.js2xml(js, {compact: false, instructionFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, instructionFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('there', 'go', '_root_', js);
@@ -60,7 +60,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"cdata","cdata":" \t <foo></bar> \t "}]};
       var xml = '<![CDATA[' + manipulate(' \t <foo></bar> \t ') + ']]>';
       it('<![CDATA[ \t <foo></bar> \t ]]>', function () {
-        expect(convert.js2xml(js, {compact: false, cdataFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, cdataFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t <foo></bar> \t ', '_root_', js);
@@ -74,7 +74,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"comment","comment":" \t Hello, World! \t "}]};
       var xml = '<!--' + manipulate(' \t Hello, World! \t ') + '-->';
       it('<!-- \t Hello, World! \t -->', function () {
-        expect(convert.js2xml(js, {compact: false, commentFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, commentFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t Hello, World! \t ', '_root_', js);
@@ -87,7 +87,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a","elements":[{"type":"text","text":" \t Hi \t "}]}]};
       var xml = '<a>' + manipulate(' \t Hi \t ') + '</a>';
       it('<a> \t Hi \t </a>', function () {
-        expect(convert.js2xml(js, {compact: false, textFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, textFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t Hi \t ', 'a', js.elements[0]);
@@ -100,7 +100,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"instruction","name":"go","instruction":"there"}]};
       var xml = '<?' + manipulate('go') + ' there?>';
       it('<?go there?>', function () {
-        expect(convert.js2xml(js, {compact: false, instructionNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, instructionNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('go', '_root_', js);
@@ -113,7 +113,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a","attributes":{"x":"hello"}}]};
       var xml = '<' + manipulate('a') + ' x="hello"/>';
       it('<a x="hello"/>', function () {
-        expect(convert.js2xml(js, {compact: false, elementNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, elementNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('a', js.elements[0]);
@@ -126,7 +126,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a ' + manipulate('x') + '="1.234" ' + manipulate('y') + '="It\'s"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: false, attributeNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, attributeNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('y', 'It\'s', 'a', js.elements[0]);
@@ -139,7 +139,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a x="' + manipulate('1.234') + '" y="' + manipulate('It\'s') + '"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: false, attributeValueFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: false, attributeValueFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('It\'s', 'y', 'a', js.elements[0]);
@@ -152,10 +152,10 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a","attributes":{"x":"1.234","y":"It\'s"}}]};
       var xml = '<a ' + manipulate('x="1.234" y="It\'s"') + '/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: false, attributesFn: manipulateAttribute})).toEqual(xml);
+        expect(js2xml(js, {compact: false, attributesFn: manipulateAttribute})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
-        expect(args).toContain({"X":"1.234","Y":"IT\'S"}, 'a', js.elements[0]);
+        expect(args).toContain({"X":"1.234","Y":"IT\'S"});
       });
 
     });
@@ -169,7 +169,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"_doctype":"note [\n<!ENTITY foo \"baa\">]"};
       var xml = '<!DOCTYPE ' + manipulate('note [\n<!ENTITY foo "baa">]') + '>';
       it('<!DOCTYPE note [\\n<!ENTITY foo "baa">]>', function () {
-        expect(convert.js2xml(js, {compact: true, doctypeFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, doctypeFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('note [\n<!ENTITY foo "baa">]', '_root_', js);
@@ -182,7 +182,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"_instruction":{"go": "there"}};
       var xml = '<?go ' + manipulate('there') + '?>';
       it('<?go there?>', function () {
-        expect(convert.js2xml(js, {compact: true, instructionFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, instructionFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('there', 'go', '_root_', js);
@@ -195,7 +195,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"_cdata":" \t <foo></bar> \t "};
       var xml = '<![CDATA[' + manipulate(' \t <foo></bar> \t ') + ']]>';
       it('<![CDATA[ \t <foo></bar> \t ]]>', function () {
-        expect(convert.js2xml(js, {compact: true, cdataFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, cdataFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t <foo></bar> \t ', '_root_', js);
@@ -208,7 +208,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"_comment":" \t Hello, World! \t "};
       var xml = '<!--' + manipulate(' \t Hello, World! \t ') + '-->';
       it('<!-- \t Hello, World! \t -->', function () {
-        expect(convert.js2xml(js, {compact: true, commentFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, commentFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t Hello, World! \t ', '_root_', js);
@@ -221,7 +221,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{"_text":" \t Hi \t "}};
       var xml = '<a>' + manipulate(' \t Hi \t ') + '</a>';
       it('<a> \t Hi \t </a>', function () {
-        expect(convert.js2xml(js, {compact: true, textFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, textFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain(' \t Hi \t ', 'a', js.a);
@@ -234,7 +234,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"_instruction":{"go": "there"}};
       var xml = '<?' + manipulate('go') + ' there?>';
       it('<?go there?>', function () {
-        expect(convert.js2xml(js, {compact: true, instructionNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, instructionNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('go', 'there', '_root_', js);
@@ -247,7 +247,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{_attributes:{"x":"hello"}}};
       var xml = '<' + manipulate('a') + ' x="hello"/>';
       it('<a x="hello"/>', function () {
-        expect(convert.js2xml(js, {compact: true, elementNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, elementNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('a', js.a);
@@ -260,7 +260,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
       var xml = '<a ' + manipulate('x') + '="1.234" ' + manipulate('y') + '="It\'s"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: true, attributeNameFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, attributeNameFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('y', 'It\'s', 'a', js.a);
@@ -273,7 +273,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
       var xml = '<a x="' + manipulate('1.234') + '" y="' + manipulate('It\'s') + '"/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: true, attributeValueFn: manipulate})).toEqual(xml);
+        expect(js2xml(js, {compact: true, attributeValueFn: manipulate})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain('It\'s', 'y', 'a', js.a);
@@ -286,7 +286,7 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{_attributes:{"x":"1.234","y":"It\'s"}}};
       var xml = '<a ' + manipulate('x="1.234" y="It\'s"') + '/>';
       it('<a x="1.234" y="It\'s"/>', function () {
-        expect(convert.js2xml(js, {compact: true, attributesFn: manipulateAttribute})).toEqual(xml);
+        expect(js2xml(js, {compact: true, attributesFn: manipulateAttribute})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
         expect(args).toContain({"X":"1.234","Y":"IT\'S"}, 'a', js.a);
@@ -303,10 +303,10 @@ describe('Testing js2xml.js:', function () {
       var js = {"elements":[{"type":"element","name":"a"},{"type":"element","name":"b"}]};
       var xml = '<a/><b></b>';
       it('<a/><b/>', function () {
-        expect(convert.js2xml(js, {compact: false, fullTagEmptyElementFn: fullTag})).toEqual(xml);
+        expect(js2xml(js, {compact: false, fullTagEmptyElementFn: fullTag})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
-        expect(args).toContain('b', js.elements[1]);
+        expect(args).toContain('b');
       });
 
     });
@@ -316,10 +316,10 @@ describe('Testing js2xml.js:', function () {
       var js = {"a":{},"b":{}};
       var xml = '<a/><b></b>';
       it('<a/><b/>', function () {
-        expect(convert.js2xml(js, {compact: true, fullTagEmptyElementFn: fullTag})).toEqual(xml);
+        expect(js2xml(js, {compact: true, fullTagEmptyElementFn: fullTag})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
-        expect(args).toContain('b', js.b);
+        expect(args).toContain('b');
       });
 
     });

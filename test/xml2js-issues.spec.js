@@ -1,4 +1,4 @@
-var convert = require('../lib');
+import { xml2json, json2xml, xml2js, js2xml } from '../lib';
 
 /*eslint quotes: 0*/  // --> turn off error of strings surrounded by double quotes
 /*global describe,xdescribe,it,expect*/
@@ -61,7 +61,7 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should output as expected json', function () {
-        expect(convert.xml2json(xml, {compact: true})).toEqual(JSON.stringify(json));
+        expect(xml2json(xml, {compact: true})).toEqual(JSON.stringify(json));
       });
 
     });
@@ -95,10 +95,10 @@ describe('Testing xml2js.js:', function () {
         '    </applicationslist>\n' +
         '</ZohoCreator>';
 
-      var json = convert.xml2json(xml, {compact: true, spaces: 4});
+      var json = xml2json(xml, {compact: true, spaces: 4});
 
       it('should output json and reverse it back to xml', function () {
-        expect(convert.json2xml(json, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml);
+        expect(json2xml(json, {compact: true, spaces: 4, fullTagEmptyElement: true})).toEqual(xml);
       });
 
     });
@@ -109,7 +109,7 @@ describe('Testing xml2js.js:', function () {
       var json = {"_doctype" : "svc_init SYSTEM \"MLP_SVC_INIT_300.DTD\" [<!ENTITY % extension SYSTEM \"PIF_EXTENSION_100.DTD\">%extension;]"};
 
       it('should output as expected json', function () {
-        expect(convert.xml2js(xml, {compact: true})).toEqual(json);
+        expect(xml2js(xml, {compact: true})).toEqual(json);
       });
 
     });
@@ -149,9 +149,9 @@ describe('Testing xml2js.js:', function () {
 
       it('should convert xml object to js and back to xml correctly', function () {
         xml = xml.replace(/\v/g, '  ');
-        var js_ = convert.xml2js(xml, {compact: true});
+        var js_ = xml2js(xml, {compact: true});
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_, {spaces: 2, compact: true})).toEqual(xml);
+        expect(js2xml(js_, {spaces: 2, compact: true})).toEqual(xml);
       });
 
     });
@@ -171,9 +171,9 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
-        var js_ = convert.xml2js(xml);
+        var js_ = xml2js(xml);
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_)).toEqual(xml);
+        expect(js2xml(js_)).toEqual(xml);
       });
 
     });
@@ -213,9 +213,9 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should convert xml object to js and back to xml correctly', function () {
-        var js_ = convert.xml2js(xml, {captureSpacesBetweenElements: true});
+        var js_ = xml2js(xml, {captureSpacesBetweenElements: true});
         expect(js_).toEqual(js);
-        expect(convert.js2xml(js_)).toEqual(xml);
+        expect(js2xml(js_)).toEqual(xml);
       });
 
     });
@@ -233,7 +233,7 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should accept XML declarations that use single quotes', function () {
-        expect(convert.xml2js(xml)).toEqual(js);
+        expect(xml2js(xml)).toEqual(js);
       });
 
     });
@@ -342,12 +342,12 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should convert without resolving namespace', function () {
-        expect(convert.xml2js(xml1, {compact: true, resolveNamespace: false})).toEqual(js1);
-        expect(convert.xml2js(xml2, {compact: true, resolveNamespace: false})).toEqual(js2);
+        expect(xml2js(xml1, {compact: true, resolveNamespace: false})).toEqual(js1);
+        expect(xml2js(xml2, {compact: true, resolveNamespace: false})).toEqual(js2);
       });
 
       it('should convert and resolve namespace', function () {
-        expect(convert.xml2js(xml1, {compact: true, resolveNamespace: true})).toEqual(js);
+        expect(xml2js(xml1, {compact: true, resolveNamespace: true})).toEqual(js);
       });
 
     });
@@ -364,8 +364,8 @@ describe('Testing xml2js.js:', function () {
       };
 
       it('should xml to json and back to xml', function () {
-        expect(convert.xml2js(xml, {compact: true})).toEqual(js);
-        expect(convert.js2xml(js, {compact: true, attributeValueFn: function(value) {
+        expect(xml2js(xml, {compact: true})).toEqual(js);
+        expect(js2xml(js, {compact: true, attributeValueFn: function(value) {
           return value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }})).toEqual(xml);
       });
@@ -389,7 +389,7 @@ describe('Testing xml2js.js:', function () {
       it('should json to xml and back to json', function () {
         // console.log(convert.xml2json(xml, {compact: true}));
         // expect(convert.js2xml(js, {compact: true})).toEqual(xml);
-        expect(convert.xml2json(xml, {compact: true})).toEqual(JSON.stringify(js));
+        expect(xml2json(xml, {compact: true})).toEqual(JSON.stringify(js));
       });
 
     });

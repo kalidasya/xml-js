@@ -1,5 +1,5 @@
-var convert = require('../lib');
-var testItems = require('./test-items');
+import { js2xml, json2xml } from '../lib';
+import testItems from './test-items';
 
 /*global describe,it,expect*/
 
@@ -10,7 +10,7 @@ describe('Testing js2xml.js:', function () {
     var options = {};
     testItems('js2xml', options).forEach(function (test) {
       it(test.desc, function () {
-        expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+        expect(js2xml(test.js, options)).toEqual(test.xml);
       });
     });
 
@@ -23,7 +23,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: false, spaces: 0, ignoreText: false, ignoreComment: false, ignoreCdata: false, fullTagEmptyElement: false};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -34,7 +34,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 4, onlyItem: 8};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -45,7 +45,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -56,7 +56,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreText: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -67,7 +67,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreComment: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -78,7 +78,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreCdata: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -89,7 +89,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreDoctype: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -100,7 +100,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreDeclaration: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -111,7 +111,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, ignoreInstruction: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -122,7 +122,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 0, fullTagEmptyElement: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -137,7 +137,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreText: false, ignoreComment: false, ignoreCdata: false, fullTagEmptyElement: false};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -148,7 +148,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 4};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -159,7 +159,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -170,7 +170,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreText: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -181,7 +181,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreComment: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -192,7 +192,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreCdata: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -203,7 +203,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreDoctype: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -214,7 +214,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreDeclaration: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -225,7 +225,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, ignoreInstruction: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -236,7 +236,7 @@ describe('Testing js2xml.js:', function () {
       var options = {compact: true, spaces: 0, fullTagEmptyElement: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -251,7 +251,7 @@ describe('Testing js2xml.js:', function () {
       var options = {};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -262,7 +262,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: true};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -273,7 +273,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 2};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -284,7 +284,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: 4};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -295,7 +295,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: '  '};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -306,7 +306,7 @@ describe('Testing js2xml.js:', function () {
       var options = {spaces: '\t'};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.js2xml(test.js, options)).toEqual(test.xml);
+          expect(js2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -321,7 +321,7 @@ describe('Testing js2xml.js:', function () {
       var options = {};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.json2xml(JSON.stringify(test.js), options)).toEqual(test.xml);
+          expect(json2xml(JSON.stringify(test.js), options)).toEqual(test.xml);
         });
       });
 
@@ -332,7 +332,7 @@ describe('Testing js2xml.js:', function () {
       var options = {};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.json2xml(test.js, options)).toEqual(test.xml);
+          expect(json2xml(test.js, options)).toEqual(test.xml);
         });
       });
 
@@ -343,22 +343,17 @@ describe('Testing js2xml.js:', function () {
       var options = {};
       testItems('js2xml', options).forEach(function (test) {
         it(test.desc, function () {
-          expect(convert.json2xml(new Buffer.from(JSON.stringify(test.js)), options)).toEqual(test.xml);
+          expect(json2xml(new Buffer.from(JSON.stringify(test.js)), options)).toEqual(test.xml);
         });
       });
 
     });
 
     describe('improper json', function () {
-
-      try {
-        convert.json2xml('{a:', {});
-      } catch (e) {
-        e.note = 'ignore me';
-      }
-
+      it("invalid json structure", function(){
+      expect(()=>json2xml('{a:', {})).toThrow(new Error("The JSON structure is invalid"))
+      })
     });
-
   });
 
   describe('Various options:', function () {
@@ -366,11 +361,11 @@ describe('Testing js2xml.js:', function () {
     describe('options = {instructionHasAttributes: true}', function () {
 
       it('Write processing instruction attributes, {compact: true}', function () {
-        expect(convert.js2xml({"_instruction":{"go":{"_attributes":{"to":"there"}}}}, {compact: true})).toEqual('<?go to="there"?>');
+        expect(js2xml({"_instruction":{"go":{"_attributes":{"to":"there"}}}}, {compact: true})).toEqual('<?go to="there"?>');
       });
 
       it('Write processing instruction attributes, {compact: false}', function () {
-        expect(convert.js2xml({"elements":[{"type":"instruction","name":"go","attributes":{"to":"there"}}]})).toEqual('<?go to="there"?>');
+        expect(js2xml({"elements":[{"type":"instruction","name":"go","attributes":{"to":"there"}}]})).toEqual('<?go to="there"?>');
       });
 
     });
