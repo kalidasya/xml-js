@@ -1,28 +1,24 @@
-const path = require('path');
-const webpack = require('webpack');
-const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+import UnminifiedWebpackPlugin from "unminified-webpack-plugin";
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default {
   entry: {
-    'dist': './lib/index.js',
-    'doc': './lib/index.js'
+    dist: "./lib/index.js",
+    doc: "./lib/index.js",
   },
   output: {
-    path: path.resolve(__dirname, '.'),
-    filename: '[name]/xml-js.min.js',
-    libraryTarget: 'window',
-    // library: 'xmljs' // don't specify this
+    filename: "[name]/xml-js.min.js",
+    path: resolve(__dirname, "dist"),
+    libraryTarget: "window",
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.(js)$/,
-  //       use: 'babel-loader'
-  //     }
-  //   ]
-  // },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new UnminifiedWebpackPlugin()
-  ]
-}
+  plugins: [new UnminifiedWebpackPlugin()],
+  resolve: {
+    fallback: {
+       "stream": import.meta.resolve("stream-browserify")
+    }
+  }
+};

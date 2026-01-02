@@ -1,6 +1,7 @@
 _playground/
 node_modules/
-test/coverage-jasmine/
 test/coverage-jest/
 test/fixtures/
+dist/
 npm-debug.log
+test-report.html

@@ -20,7 +20,8 @@ export const testEnvironment = "node";
 export const testMatch = ["**/*.spec.(ts|js)?(x)"];
 export const collectCoverage = true;
 export const collectCoverageFrom = [
-  "src-js/**/*.{js,ts}",
+  "lib/**/*.{js,ts}",
+  "bin/**/*.{js,ts}",
   "!**/*.spec.{js,ts}",
   "!**/node_modules/**",
   "!**/test/**",

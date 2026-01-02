@@ -13,7 +13,7 @@ export function getCommandLineHelp(command, requiredArgs, optionalArgs) {
 export function mapCommandLineArgs(requiredArgs, optionalArgs) {
   var options = {}, r, o, a = 2;
   for (r = 0; r < requiredArgs.length; r += 1) {
-    if (a < process.argv.length && process.argv[a].substr(0, 1) !== '-' && process.argv[a] !== 'JASMINE_CONFIG_PATH=./jasmine.json') {
+    if (a < process.argv.length && process.argv[a].substr(0, 1) !== '-') {
       options[requiredArgs[r].option] = process.argv[a++];
     } else {
       break;
