@@ -1,18 +1,21 @@
 {
-  "name": "xml-js",
-  "version": "1.6.11",
+  "name": "@kalidasya/xml-js",
+  "version": "1.0.0",
   "description": "A convertor between XML text and Javascript object / JSON text.",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nashwaan/xml-js.git"
+    "url": "git+https://github.com/kalidasya/xml-js.git"
   },
   "author": "Yousuf Almarzooqi <ysf953@gmail.com>",
+  "contributors": [
+    "Tamas Kende <kende.tamas@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nashwaan/xml-js/issues"
+    "url": "https://github.com/kalidasya/xml-js/issues"
   },
-  "homepage": "https://github.com/nashwaan/xml-js#readme",
+  "homepage": "https://github.com/kalidasya/xml-js#readme",
   "keywords": [
     "XML",
     "xml",
