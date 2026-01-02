@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var helper = require('./cli-helper');
-var project = require('../package.json');
-var xml2json = require('../lib/xml2json');
-var json2xml = require('../lib/json2xml');
+import { statSync, readFileSync, writeFileSync } from 'fs';
+import { mapCommandLineArgs, getCommandLineHelp } from './cli-helper.js';
+import packageJson from '../package.json' with {type: 'json'};
+const version = packageJson.version;
+import xml2json from '../lib/xml2json.js';
+import json2xml from '../lib/json2xml.js';
 
 var output = '';
 var stream = '';
@@ -56,23 +57,23 @@ process.stdin.on('end', function () {
   process.stdout.write(xml2json(stream, {}) + '\n');
 });
 
-options = helper.mapCommandLineArgs(requiredArgs, optionalArgs);
+options = mapCommandLineArgs(requiredArgs, optionalArgs);
 
 if (options.version) {
-  console.log(project.version);
+  console.log(version);
   process.exit(0);
 } else if (options.help || process.argv.length <= 2 + requiredArgs.length - 1) {
-  console.log(helper.getCommandLineHelp('xml-js', requiredArgs, optionalArgs));
+  console.log(getCommandLineHelp('xml-js', requiredArgs, optionalArgs));
   process.exit(process.argv.length <= 2 ? 1 : 0);
 } else if ('src' in options) {
-  if (fs.statSync(options.src).isFile()) {
+  if (statSync(options.src).isFile()) {
     if (options.src.split('.').pop() === 'xml') {
-      output = xml2json(fs.readFileSync(options.src, 'utf8'), options);
+      output = xml2json(readFileSync(options.src, 'utf8'), options);
     } else if (options.src.split('.').pop() === 'json') {
-      output = json2xml(fs.readFileSync(options.src, 'utf8'), options);
+      output = json2xml(readFileSync(options.src, 'utf8'), options);
     }
     if (options.out) {
-      fs.writeFileSync(options.out, output, 'utf8');
+      writeFileSync(options.out, output, 'utf8');
     } else {
       console.log(output);
     }

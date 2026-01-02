@@ -1,4 +1,4 @@
-import { js2xml } from '../lib';
+import convert, { js2xml } from '../lib';
 import { Script } from 'vm';
 
 /*global describe,it,expect*/
@@ -378,7 +378,7 @@ describe('Testing js2xml.js:', function () {
     describe('case by silentgert', function() {
       // see https://github.com/nashwaan/xml-js/issues/42
       var context = {
-        convert: convert,
+        js2xml: js2xml,
         output: undefined,
       };
       var scriptCode =
@@ -401,7 +401,7 @@ describe('Testing js2xml.js:', function () {
       '      ]\n' +
       '    }\n' +
       '  };\n' +
-      '  output = convert.js2xml(obj, { compact: true });\n' +
+      '  output = js2xml(obj, { compact: true });\n' +
       '})()\n';
 
       var executableScript = new Script(scriptCode, {

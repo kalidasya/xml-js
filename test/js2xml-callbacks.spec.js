@@ -155,7 +155,7 @@ describe('Testing js2xml.js:', function () {
         expect(js2xml(js, {compact: false, attributesFn: manipulateAttribute})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
-        expect(args).toContain({"X":"1.234","Y":"IT\'S"});
+        expect(args).toMatchObject({"0": {"X":"1.234","Y":"IT\'S"}, "1": 'a', "2": js.elements[0]});
       });
 
     });
@@ -289,7 +289,7 @@ describe('Testing js2xml.js:', function () {
         expect(js2xml(js, {compact: true, attributesFn: manipulateAttribute})).toEqual(xml);
       });
       it('should provide correct arguments', function () {
-        expect(args).toContain({"X":"1.234","Y":"IT\'S"}, 'a', js.a);
+        expect(args).toMatchObject({"0": {"X":"1.234","Y":"IT\'S"}, "1": 'a', "2": js.a});
       });
 
     });

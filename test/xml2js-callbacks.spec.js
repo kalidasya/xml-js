@@ -173,7 +173,7 @@ describe('Testing xml2js.js:', function () {
         });
         if (test.js.elements && test.js.elements[test.js.elements.length-1].attributes) {
           it('should provide correct arguments', function () {
-            expect(args).toContain(test.js.elements[test.js.elements.length-1].attributes);
+            expect(args).toContainEqual(test.js.elements[test.js.elements.length-1].attributes);
           });
         }
       });
@@ -328,13 +328,13 @@ describe('Testing xml2js.js:', function () {
     describe('options = {attributesFn: manipulateAttribute}', function () {
 
       var options = {compact: true, attributesFn: manipulateAttribute};
-      testItems('xml2js', options).forEach(function (test) {
+      describe.each(testItems('xml2js', options))('$test.js', function (test) {
         it(test.desc, function () {
           expect(xml2js(test.xml, options)).toEqual(test.js);
         });
         if (test.js.a && test.js.a._attributes) {
           it('should provide correct arguments', function () {
-            expect(args).toContain(test.js.a._attributes, test.js);
+              expect(args).toContainEqual(test.js.a._attributes);
           });
         }
       });

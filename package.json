@@ -2,6 +2,7 @@
   "name": "xml-js",
   "version": "1.6.11",
   "description": "A convertor between XML text and Javascript object / JSON text.",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nashwaan/xml-js.git"
@@ -75,7 +76,7 @@
     "coverage:codacy": "cross-env CODACY_PROJECT_TOKEN=0207815122ea49a68241d1aa435f21f1 && cat ./test/coverage-jasmine/lcov.info | codacy-coverage",
     "coverage:codeclimate": "cross-env CODECLIMATE_REPO_TOKEN=60848a077f9070acf358b0c7145f0a2698a460ddeca7d8250815e75aa4333f7d codeclimate-test-reporter < test\\coverage-jasmine\\lcov.info",
     "prepublish": "npm run test",
-    "test": "npm run jasmine && npm run jest && npm run test:types",
+    "test": "npm run jest && npm run test:types",
     "test:types": "tsc -p ./types"
   },
   "dependencies": {
@@ -97,7 +98,6 @@
     "eslint": "^9.39.2",
     "globify": "^3.0.3",
     "istanbul": "^0.4.5",
-    "jasmine": "^5.13.0",
     "jest": "^30.2.0",
     "jest-cli": "^30.2.0",
     "jest-html-reporter": "^4.3.0",
