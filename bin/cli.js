@@ -19,6 +19,7 @@ var optionalArgs = [
   { arg: 'out', type: 'file', option: 'out', desc: 'Output file where the converted result should be written.' },
   { arg: 'to-json', type: 'flag', option:'toJason', desc: 'Convert.' },
   { arg: 'compact', type: 'flag', option:'compact', desc: 'Compact JSON form (see explanation in www.npmjs.com/package/xml-js).' },
+  { arg: 'track-position', type: 'flag', option:'trackPosition', desc: 'Enable position tracking in JSON and JS mode.' },
   { arg: 'spaces', type: 'number', option:'spaces', desc: 'Specifies amount of space indentation in the output.' },
   { arg: 'trim', type: 'flag', option:'trim', desc: 'Any whitespaces surrounding texts will be trimmed.' },
   // { arg: 'sanitize', type: 'flag', option:'sanitize', desc: 'Special xml characters will be replaced with entity codes.' },
