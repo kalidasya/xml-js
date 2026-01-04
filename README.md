@@ -71,7 +71,7 @@ Most converters will produce compact output like this `{a:[{_:{x:"1"}},{_:{x:"3"
 which has merged both `<a>` elements into an array. If you try to convert this back to xml, you will get `<a x="1"/><a x="3"/><b x="2"/>`
 which has not preserved the order of elements!
 
-The reason behind this behavior is due to the inherent limitation in the compact representation. 
+The reason behind this behavior is due to the inherent limitation in the compact representation.
 Because output like `{a:{_:{x:"1"}}, b:{_:{x:"2"}}, a:{_:{x:"3"}}}` is illegal (same property name `a` should not appear twice in an object). This leaves no option but to use array `{a:[{_:{x:"1"}},{_:{x:"3"}}]`.
 
 The non-compact output, which is supported by this library, will produce more information and always guarantees the order of the elements as they appeared in the XML file.
@@ -211,6 +211,7 @@ The below options are applicable for both `xml2js()` and `xml2json()` functions.
 | `ignoreCdata`       | `false` | Whether to ignore parsing CData of the elements. That is, no `cdata` will be generated. |
 | `ignoreDoctype`     | `false` | Whether to ignore parsing Doctype of the elements. That is, no `doctype` will be generated. |
 | `ignoreText`        | `false` | Whether to ignore parsing texts of the elements. That is, no `text` will be generated. |
+| `trackPosition`     | `false` | Whether to track element positions. |
 
 The below option is applicable only for `xml2json()` function.
 
@@ -240,7 +241,7 @@ Two default values mean the first is used for *non-compact* output and the secon
 
 > **TIP**: In compact mode, you can further reduce output result by using fewer characters for key names `{textKey: '_', attributesKey: '$', commentKey: 'value'}`. This is also applicable to non-compact mode.
 
-> **TIP**: In non-compact mode, you probably want to set `{textKey: 'value', cdataKey: 'value', commentKey: 'value'}` 
+> **TIP**: In non-compact mode, you probably want to set `{textKey: 'value', cdataKey: 'value', commentKey: 'value'}`
 > to make it more consistent and easier for your client code to go through the contents of text, cdata, and comment.
 
 ## Options for Custom Processing Functions
