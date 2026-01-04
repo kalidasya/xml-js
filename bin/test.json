@@ -1,23 +1,23 @@
 {
-    "elements": [
+  "elements": [
+    {
+      "type": "element",
+      "name": "a",
+      "attributes": {
+        "x": "1"
+      },
+      "elements": [
         {
-            "type": "element",
-            "name": "a",
-            "attributes": {
-                "x": "1"
-            },
-            "elements": [
-                {
-                    "type": "element",
-                    "name": "b",
-                    "elements": [
-                        {
-                            "type": "text",
-                            "text": "bye!"
-                        }
-                    ]
-                }
-            ]
+          "type": "element",
+          "name": "b",
+          "elements": [
+            {
+              "type": "text",
+              "text": "bye!"
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

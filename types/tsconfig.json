@@ -6,9 +6,6 @@
     "strictNullChecks": true,
     "noEmit": true
   },
-  "files": [
-    "./index.d.ts",
-    "./xml-js-tests.ts"
-  ],
+  "files": ["./index.d.ts", "./xml-js-tests.ts"],
   "compileOnSave": false
 }
