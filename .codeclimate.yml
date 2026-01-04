@@ -5,15 +5,15 @@ engines:
     enabled: true
     config:
       languages:
-      - javascript
+        - javascript
   eslint:
     enabled: true
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.css"
-  - "**.js"
+    - '**.css'
+    - '**.js'
 exclude_paths:
   - _playground/
   - node_modules/
